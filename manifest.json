@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Cedok Wak",
+  "version": "2.0",
+  "description": "Auto-accept tasks.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "acceptor-icon16.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "notifications",
+    "scripting",
+    "contextMenus",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://www.raterhub.com/evaluation/rater*"
+  ],
+  "icons": {
+    "16": "acceptor-icon16.png",
+    "48": "acceptor-icon48.png",
+    "128": "acceptor-icon128.png"
+  },
+  "options_page": "options.html"
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { font-family: sans-serif; padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <h4>Cedok Wak</h4>
+    <p>Mode:</p>
+    <label><input type="radio" name="mode" value="off"> Off</label><br>
+    <label><input type="radio" name="mode" value="refresh"> Auto Refresh</label><br>
+    <label><input type="radio" name="mode" value="accept"> Auto Refresh + Accept</label>
+
+    <p>Interval:</p>
+    <select id="interval">
+      <option value="2000">2s</option>
+      <option value="5000">5s</option>
+      <option value="10000">10s</option>
+      <option value="30000">30s</option>
+      <option value="60000" selected>60s</option>
+    </select>
+    <script src="popup.js"></script>
+  </body>
+</html>
