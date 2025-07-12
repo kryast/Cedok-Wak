@@ -25,3 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.getElementById("resume").addEventListener("click", () => {
+  chrome.storage.local.get("interval", (data) => {
+    chrome.alarms.create("refreshAlarm", {
+      periodInMinutes: (data.interval || 60000) / 60000
+    });
+  });
+});

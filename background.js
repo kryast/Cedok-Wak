@@ -25,6 +25,8 @@ chrome.contextMenus.onClicked.addListener((info) => {
   chrome.storage.local.set({ mode: selectedMode });
 });
 
+let found = false;
+
 chrome.alarms.onAlarm.addListener(() => {
   chrome.storage.local.get("mode", (data) => {
     if (data.mode === "off") return;
@@ -33,7 +35,8 @@ chrome.alarms.onAlarm.addListener(() => {
       const tab = tabs[0];
       if (tab && tab.url.includes("/evaluation/rater")) {
         chrome.tabs.reload(tab.id);
-        if (data.mode === "accept") {
+
+        if (data.mode === "accept" && !found) {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["content.js"]
@@ -46,16 +49,21 @@ chrome.alarms.onAlarm.addListener(() => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.accepted) {
+    found = true;
+
     chrome.notifications.create("accepted", {
       type: "basic",
       iconUrl: "acceptor-icon128.png",
-      title: "The Great Acceptor",
+      title: "Cedok Wak",
       message: "Task accepted, get to work!"
     });
 
     setTimeout(() => {
       chrome.notifications.clear("accepted");
     }, 5000);
+
+    // Stop alarm sementara
+    chrome.alarms.clear("refreshAlarm");
   }
 });
 
