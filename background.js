@@ -36,7 +36,7 @@ chrome.alarms.onAlarm.addListener(() => {
       if (tab && tab.url.includes("/evaluation/rater")) {
         chrome.tabs.reload(tab.id);
 
-        if (data.mode === "accept" && !found) {
+        if ((data.mode === "accept" || data.mode === "refresh") && !found) {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["content.js"]
@@ -62,8 +62,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       chrome.notifications.clear("accepted");
     }, 5000);
 
-    // Stop alarm sementara
     chrome.alarms.clear("refreshAlarm");
+
+  } else if (message.taskFound && !found) {
+    found = true;
+
+    chrome.notifications.create("found", {
+      type: "basic",
+      iconUrl: "acceptor-icon128.png",
+      title: "Cedok Wak",
+      message: "Task found! Tap it now!"
+    });
+
+    setTimeout(() => {
+      chrome.notifications.clear("found");
+    }, 5000);
   }
 });
 
