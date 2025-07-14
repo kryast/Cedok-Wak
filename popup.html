@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { font-family: sans-serif; padding: 10px; }
-    </style>
-  </head>
-  <body>
-    <h4>Cedok Wak</h4>
-    <p>Mode:</p>
-    <label><input type="radio" name="mode" value="off"> Off</label><br>
-    <label><input type="radio" name="mode" value="refresh"> Auto Refresh</label><br>
-    <label><input type="radio" name="mode" value="accept"> Auto Refresh + Accept</label>
-    <br><br>
-<button id="resume">Resume Refresh</button>
+<head>
+  <meta charset="utf-8">
+  <title>Cedok Wak</title>
+  <style>
+    body { font-family: sans-serif; padding: 10px; width: 200px; }
+    h4 { margin-top: 0; }
+    label { display: block; margin-bottom: 6px; }
+    select, button { margin-top: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h4>Mode:</h4>
+  <label><input type="radio" name="mode" value="off"> Off</label>
+  <label><input type="radio" name="mode" value="refresh"> Auto Refresh</label>
+  <label><input type="radio" name="mode" value="accept"> Auto Refresh + Accept</label>
 
-    <p>Interval:</p>
-    <select id="interval">
-      <option value="2000">2s</option>
-      <option value="5000">5s</option>
-      <option value="10000">10s</option>
-      <option value="30000">30s</option>
-      <option value="60000" selected>60s</option>
-    </select>
-    <script src="popup.js"></script>
-  </body>
+  <h4>Interval:</h4>
+  <select id="interval">
+    <option value="5000">5 Seconds</option>
+    <option value="10000">10 Seconds</option>
+    <option value="30000">30 Seconds</option>
+    <option value="60000" selected>60 Seconds</option>
+  </select>
+
+  <label><input type="checkbox" id="soundOnRefresh"> Play sound on refresh</label>
+
+  <button id="resume">Resume</button>
+
+  <script src="popup.js"></script>
+</body>
 </html>

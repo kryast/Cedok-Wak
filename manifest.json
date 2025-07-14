@@ -28,5 +28,11 @@
     "48": "acceptor-icon48.png",
     "128": "acceptor-icon128.png"
   },
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["changes.ogg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

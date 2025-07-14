@@ -34,7 +34,14 @@ chrome.alarms.onAlarm.addListener(() => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tab = tabs[0];
       if (tab && tab.url.includes("/evaluation/rater")) {
-        chrome.tabs.reload(tab.id);
+        chrome.tabs.reload(tab.id, () => {
+  setTimeout(() => {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ["playAudio.js"]
+    });
+  }, 1000); // delay sedikit agar reload selesai
+});;
 
         if ((data.mode === "accept" || data.mode === "refresh") && !found) {
           chrome.scripting.executeScript({

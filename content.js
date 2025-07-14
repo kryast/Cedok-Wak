@@ -5,21 +5,14 @@ setTimeout(() => {
   if (button && button.innerText.trim() === "Acquire if available") {
     console.log("Cedok Wak: Task FOUND!");
 
-    // 🔊 Play audio when task found
-    const audio = new Audio(chrome.runtime.getURL('changes.ogg'));
-    audio.play();
-
-    // 🔔 Notify background task found
+    // Kirim pesan task ditemukan
     chrome.runtime.sendMessage({ taskFound: true });
 
-    // 🤖 Auto-accept if enabled
+    // Dapatkan mode dari storage
     chrome.storage.local.get("mode", (data) => {
       if (data.mode === "accept") {
         console.log("Cedok Wak: Auto Accept mode, clicking...");
         button.click();
-
-        const acceptAudio = new Audio(chrome.runtime.getURL('changes.ogg'));
-        acceptAudio.play();
 
         chrome.runtime.sendMessage({ accepted: true });
       }
