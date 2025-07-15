@@ -5,7 +5,6 @@
   <title>Cedok Wak</title>
   <style>
     body { font-family: sans-serif; padding: 10px; width: 200px; }
-    h4 { margin-top: 0; }
     label { display: block; margin-bottom: 6px; }
     select, button { margin-top: 10px; width: 100%; }
   </style>
@@ -13,8 +12,8 @@
 <body>
   <h4>Mode:</h4>
   <label><input type="radio" name="mode" value="off"> Off</label>
-  <label><input type="radio" name="mode" value="refresh"> Auto Refresh</label>
-  <label><input type="radio" name="mode" value="accept"> Auto Refresh + Accept</label>
+  <label><input type="radio" name="mode" value="refresh"> Refresh</label>
+  <label><input type="radio" name="mode" value="accept"> Refresh + Accept</label>
 
   <h4>Interval:</h4>
   <select id="interval">
@@ -24,9 +23,7 @@
     <option value="60000" selected>60 Seconds</option>
   </select>
 
-  <label><input type="checkbox" id="soundOnRefresh"> Play sound on refresh</label>
-
-  <button id="resume">Resume</button>
+  <label><input type="checkbox" id="soundOnPopup"> Play sound on found</label>
 
   <script src="popup.js"></script>
 </body>
