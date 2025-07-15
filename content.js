@@ -1,13 +1,10 @@
-setTimeout(() => {
+(() => {
   const button = document.querySelector('.button');
-  if (button && button.innerText.trim() === "Acquire if available") {
-    chrome.runtime.sendMessage({ type: "task_found" });
 
-    chrome.storage.local.get("accept", (data) => {
-      if (data.accept) {
-        button.click();
-        chrome.runtime.sendMessage({ type: "task_accepted" });
-      }
-    });
+  if (button && button.innerText === "Acquire if available") {
+    // button.click();
+    const audio = new Audio(chrome.runtime.getURL('changes.ogg'));
+    audio.play();
+    // chrome.runtime.sendMessage({ accepted: true });
   }
-}, 2000);
+})();
